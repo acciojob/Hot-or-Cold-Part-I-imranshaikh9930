@@ -1,12 +1,11 @@
-//your code here
-
+// scripts.js
 document.addEventListener('DOMContentLoaded', function () {
     const responseElement = document.getElementById('respond');
-    const btn = document.querySelector("#btn");
-    btn.addEventListener("click",makeGuess);
-    let secretNumber = generateRandomNumber();
+    const btn  = document.querySelector("#btn");
 
-    console.log(secretNumber)
+    btn.addEventListener("click",makeGuess);
+
+    let secretNumber = generateRandomNumber();
     let previousGuess;
 
     function generateRandomNumber() {
@@ -28,18 +27,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (currentDifference < previousDifference) {
                 responseElement.textContent = 'Getting hotter! ';
-                if (userGuess < secretNumber) {
-                    responseElement.textContent += 'Guess higher.';
-                } else {
-                    responseElement.textContent += 'Guess lower.';
-                }
             } else {
                 responseElement.textContent = 'Getting colder. ';
-                if (userGuess < secretNumber) {
-                    responseElement.textContent += 'Guess higher.';
-                } else {
-                    responseElement.textContent += 'Guess lower.';
-                }
+            }
+
+            if (userGuess < secretNumber) {
+                responseElement.textContent += 'Guess higher.';
+            } else if (userGuess > secretNumber) {
+                responseElement.textContent += 'Guess lower.';
+            } else {
+                responseElement.textContent = 'Congratulations! You guessed the correct number.';
+                return; // Exit the function if the guess is correct
             }
         }
 
